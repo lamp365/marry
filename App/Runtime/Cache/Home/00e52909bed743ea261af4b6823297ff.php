@@ -7,13 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="/marry/Public/Home/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/marry/Public/Home/css/style.css">
     <script src="/marry/Public/Home/js/jquery-1.10.2.min.js"></script>
     <script src="/marry/Public/Home/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="row">
-    <div class="col-xs-4">.col-xs-12 .col-md-8</div>
-    <div class="col-xs-8">.col-xs-6 .col-md-4</div>
+<div class="main_box">
+    <div class="top_header">
+        <div class="header_title" style="">
+            <a href="<?php echo U('index');?>"  class='art_active'>宾客列表</a>
+            <a href="<?php echo U('index/qiandao');?>" >宾客签到</a>
+        </div>
+    </div>
 </div>
+
 </body>
 </html>

@@ -1,0 +1,38 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.main_box{
+    height: 100%;
+    background: white;
+    min-width: 768px;
+    margin: 0 auto;
+}
+.top_head{
+    height: 45px;
+    line-height: 45px;
+    max-width: 720px;
+    min-width: 320px;
+    position: relative;
+    border-bottom: 1px solid #eaeaea;
+    background: #F8F8F8;
+    filter: alpha(opacity=90);
+    -moz-opacity: 0.9;
+    -khtml-opacity: 0.9;
+    opacity: 0.9;
+}
+.head_title{
+    text-align: center;
+    height: 45px;
+    font-size: 16px;
+    line-height: 45px;
+    width: 100%;
+}
+.header_title .art_active {
+    color: #FF2D4B;
+}
+.header_title a {
+    width: 30%;
+    display: inline-block;
+    font-family: "微软雅黑";
+}

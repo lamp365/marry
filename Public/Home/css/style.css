@@ -2,17 +2,20 @@
     padding: 0;
     margin: 0;
 }
+a{color: #0f0f0f}
+a:visited{color: #0f0f0f}
 .main_box{
     height: 100%;
     background: white;
-    min-width: 768px;
+    width: 100%;
+    max-width: 900px;
     margin: 0 auto;
+    display: block;
 }
-.top_head{
+.top_header{
     height: 45px;
     line-height: 45px;
-    max-width: 720px;
-    min-width: 320px;
+    width: 100%;
     position: relative;
     border-bottom: 1px solid #eaeaea;
     background: #F8F8F8;
@@ -21,7 +24,7 @@
     -khtml-opacity: 0.9;
     opacity: 0.9;
 }
-.head_title{
+.header_title{
     text-align: center;
     height: 45px;
     font-size: 16px;
@@ -35,4 +38,82 @@
     width: 30%;
     display: inline-block;
     font-family: "微软雅黑";
+    float: left;
+    font-weight:bolder;
+}
+.head_right{
+    float: right;
+    width: 40%;
+}
+.head_right span{
+    float: right;
+    margin-right: 15px;
+    margin-top:10px;
+}
+.action{
+    margin-top: 15px;
+    overflow: hidden;
+    max-width: 900px;
+}
+.user_list{
+    padding: 10px;
+    padding-top: 0px;
+    width: 100%;
+}
+select option{
+    height:22px;
+    line-height:22px;
+    padding:5px;
+}
+.come0{
+    color: #999999;
+}
+.come1{
+    color: #8AC007;
+}
+.come2{
+    color: red;
+}
+
+
+
+#poptip {
+    position: absolute;
+    width:100%;
+    height: 1600px;
+    display: block;
+    background:#000;
+    opacity: 0.3;
+    filter:alpha(opacity=0.3);
+    color:#fff;
+    z-index: 99998;
+    left:0px;
+    top:0px;
+}
+#poptip_content {
+    border-radius:5px;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    position: absolute;
+    top:30%;
+    left:50%;
+    min-height: 15px;
+    padding: 15px;
+    width:160px;
+    margin-left:-80px;
+    color:#fff;
+    text-align:center;
+    font-size:14px;
+    z-index: 99999;
+    line-height:30px;
+}
+.tip_success{
+    color: rgb(255, 255, 255);
+    background-color: #E23C3D;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 2.2);
+}
+.tip_danger{
+    color: rgb(255, 255, 255);
+    background-color: #f59f25;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 2.2);
 }

@@ -8,7 +8,7 @@ return array(
     'DB_HOST'   => '127.0.0.1', // 服务器地址
     'DB_NAME'   => 'marry', // 数据库名
     'DB_USER'   => 'root', // 用户名
-    'DB_PWD'    => '123456',  // 密码
+    'DB_PWD'    => '12345678',  // 密码
     'DB_PORT'   => '3306', // 端口
     'DB_PREFIX' => '', // 数据库表前缀
 
@@ -21,7 +21,11 @@ return array(
       6 => '亲戚',
       7 => '其他'
     ),
-
+    'can_comming' => array(
+        0 => '还在待定',
+        1 => '可以参与',
+        2 => '无法参与'
+    ),
     /* 模板相关配置 */
     'TMPL_PARSE_STRING' => array(
         '__STATIC__' => __ROOT__ . '/Public/static',

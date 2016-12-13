@@ -16,8 +16,8 @@
 <div class="main_box">
     <div class="top_header">
         <div class="header_title" style="">
-            <a href="<?php echo U('index');?>"  class='art_active'>宾客邀请</a>
-            <a href="<?php echo U('index/qiandao');?>" >宾客签到</a>
+            <a href="/marry/index.php/Home/Index/index"  class='art_active'>宾客邀请</a>
+            <a href="/marry/index.php/Home/Index/qiandao" >宾客签到</a>
             <div class="head_right">
                 <span class="btn btn-xs btn-warning" id="refresh">刷新页面</span>
                 <span class="btn btn-xs btn-info" data-toggle="modal" data-target="#addUser">添加宾客</span>
@@ -129,7 +129,7 @@
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="editUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <form action="/marry/index.php/Home/Index/editUser" id="edit_user_form" data-reurl="/marry/index.php/Home/Index/index">
-        <input type="hidden" name="id" value="" id="hide_edit_user_id">
+    <input type="hidden" name="id" value="" id="hide_edit_user_id">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -145,6 +145,7 @@
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
+    </form>
 </div>
 
 

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>宾客签到</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="__CSS__/bootstrap.min.css">
+    <link rel="stylesheet" href="__CSS__/style.css">
+    <script src="__JS__/jquery-1.10.2.min.js"></script>
+    <script src="__JS__/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="main_box">
+    <div class="top_header">
+        <div class="header_title" style="">
+            <a href="__CONTROLLER__/index"  >宾客邀9请</a>
+            <a href="__CONTROLLER__/qiandao" class='art_active'>宾客签到</a>
+            <div class="head_right">
+                <span class="btn btn-xs btn-warning" id="refresh">刷新页面</span>
+                <span class="btn btn-xs btn-info" data-toggle="modal" data-target="#addUser">添加宾客</span>
+            </div>
+        </div>
+    </div>
+    <if condition="$begin eq 'no'">
+        <p class="show_time">shijianhaimeidao</p>
+    <else/>
+        <div class="container action">
+            <input type="hidden" value="__CONTROLLER__/qiandao" name="hide_url" id="hide_url">
+            <div class="form-group">
+                <form action="__CONTROLLER__/qiandao" method="post">
+                    <div class="input-group">
+                        <input type="text" class="form-control search_name" name="name" placeholder="输入名字查询">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit" id="search">搜索</button>
+                        </span>
+                    </div><!-- /input-group -->
+                </form>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <select name="iscomming" id="sel_iscomming" class="form-control">
+                            <option value="-1">按照状态查看</option>
+                            <volist name="is_comming" id="item">
+                                <if condition="($_GET['iscomming'] neq '') and ($key eq $_GET['iscomming'])">
+                                    <option value="{$key}" selected>{$item}</option>
+                                    <else />
+                                    <option value="{$key}">{$item}</option>
+                                </if>
+
+                            </volist>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <select name="type" id="sel_type" class="form-control">
+                            <option value="-1">按照关系查看</option>
+                            <volist name="tongxue_type" id="item">
+                                <if condition="($_GET['type'] neq '') and ($key eq $_GET['type'])">
+                                    <option value="{$key}" selected>{$item}</option>
+                                    <else />
+                                    <option value="{$key}">{$item}</option>
+                                </if>
+                            </volist>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="user_list">
+            <table class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th>名字</th>
+                    <th>电话</th>
+                    <th>关系</th>
+                    <th>之前状态</th>
+                    <th>现状态</th>
+                </tr>
+                </thead>
+                <tbody>
+                <volist name="info" id="row">
+                    <tr class="one_row">
+                        <td>{$row['name']}</td>
+                        <td>{$row['mobile']}</td>
+                        <td>{$tongxue_type[$row['type']]}</td>
+                        <td class="comming" data-status="{$row['cancomming']}">{$can_comming[$row['cancomming']]}</td>
+                        <td class="iscomming">
+                            <span class="edit_iscomming btn btn-xs" data-status="{$row['cancomming']}" data-id="{$row['id']}" data-url="__CONTROLLER__/iscomming">{$is_comming[$row['iscomming']]}</span>
+                        </td>
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
+        </div>
+    </if>
+</div>
+
+<script src="__JS__/style.js"></script>
+</body>
+</html>

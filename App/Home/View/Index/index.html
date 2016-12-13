@@ -16,8 +16,8 @@
 <div class="main_box">
     <div class="top_header">
         <div class="header_title" style="">
-            <a href="{:U('index')}"  class='art_active'>宾客邀请</a>
-            <a href="{:U('index/qiandao')}" >宾客签到</a>
+            <a href="__CONTROLLER__/index"  class='art_active'>宾客邀请</a>
+            <a href="__CONTROLLER__/qiandao" >宾客签到</a>
             <div class="head_right">
                 <span class="btn btn-xs btn-warning" id="refresh">刷新页面</span>
                 <span class="btn btn-xs btn-info" data-toggle="modal" data-target="#addUser">添加宾客</span>
@@ -27,7 +27,7 @@
     <div class="container action">
         <input type="hidden" value="__CONTROLLER__/index" name="hide_url" id="hide_url">
         <div class="form-group">
-            <form action="__CONTROLLER__" method="post">
+            <form action="__CONTROLLER__/index" method="post">
             <div class="input-group">
                 <input type="text" class="form-control search_name" name="name" placeholder="输入名字查询">
                 <span class="input-group-btn">
@@ -144,7 +144,7 @@
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="editUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <form action="__CONTROLLER__/editUser" id="edit_user_form" data-reurl="__CONTROLLER__/index">
-        <input type="hidden" name="id" value="" id="hide_edit_user_id">
+    <input type="hidden" name="id" value="" id="hide_edit_user_id">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -160,6 +160,7 @@
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
+    </form>
 </div>
 
 

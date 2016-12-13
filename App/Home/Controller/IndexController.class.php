@@ -8,10 +8,10 @@ class IndexController extends Controller {
         if(!empty($_POST['name'])){
             $condition .= " and name='{$_POST['name']}'";
         }
-        if(!empty($_GET['type']) && $_GET['type'] != -1){
+        if($_GET['type'] != '' && $_GET['type'] != -1){
             $condition .= " and type={$_GET['type']}";
         }
-        if(!empty($_GET['cancomming']) && $_GET['cancomming'] != -1){
+        if($_GET['cancomming'] != '' && $_GET['cancomming'] != -1){
             $condition .= " and cancomming={$_GET['cancomming']}";
         }
 
@@ -28,28 +28,31 @@ class IndexController extends Controller {
 
     public function qiandao()
     {
-        $start_time = strtotime("2017-1-14 12:00:00");
+        $start_time = strtotime("2016-1-14 12:00:00");
         if(time()<$start_time){
-            $begin  = false;
+            $begin  = 'no';
         }else{
-            $begin = true;
-            $condition = '';
-            if(!empty($_POST['type'])){
-                $condition = "type={$_POST['type']}";
-            }
-            if(!empty($_POST['iscomming'])){
-                $condition = "iscomming={$_POST['iscomming']}";
-            }
+            $begin = 'yes';
+            $condition = 'blong=1';
             if(!empty($_POST['name'])){
-                $condition = "name='{$_POST['name']}'";
+                $condition .= " and name='{$_POST['name']}'";
+            }
+            if($_GET['type'] != '' && $_GET['type'] != -1){
+                $condition .= " and type={$_GET['type']}";
+            }
+            if($_GET['iscomming'] != '' && $_GET['iscomming'] != -1){
+                $condition .= " and iscomming={$_GET['iscomming']}";
             }
             $user = M('namelist');
-            if(!empty($condition)){
-                $info = $user->where($condition)->select();
-            }else{
-                $info = $user->select();
-            }
-            $this->display('info',$info);
+            $info = $user->where($condition)->select();
+
+            $tongxue_type = C('tongxue_type');
+            $is_comming  = C('is_comming');
+            $can_comming = C('can_comming');
+            $this->assign('info',$info);
+            $this->assign('tongxue_type',$tongxue_type);
+            $this->assign('is_comming',$is_comming);
+            $this->assign('can_comming',$can_comming);
         }
         $this->assign('begin',$begin);
         $this->assign('start_time',$start_time);
@@ -58,10 +61,10 @@ class IndexController extends Controller {
 
     public function iscomming(){
         $id         = $_POST['id'];
-        $cancomming = $_POST['iscomming'];
+        $iscomming  = $_POST['iscomming'];
         $user       = M('namelist');
-        $user->where("id=$id")->save(array('iscomming'=>$cancomming));
-        $this->showSuccess(200,'操作成功');
+        $user->where("id=$id")->save(array('iscomming'=>$iscomming));
+        $this->showSuccess(200,'操作成功！');
     }
 
     public function cancomming(){
@@ -69,14 +72,21 @@ class IndexController extends Controller {
         $cancomming = $_POST['cancomming'];
         $user       = M('namelist');
         $user->where("id=$id")->save(array('cancomming'=>$cancomming));
-        $this->showSuccess(200,'操作成功');
+        $this->showSuccess(200,'操作成功！');
     }
 
     public function addUser(){
+        $user        = M('namelist');
         $name        = $_POST['name'];
         $cancomming  = $_POST['cancomming'];
         $type        = $_POST['type'];
         $mobile      = $_POST['mobile'];
+        //is exist this user
+        $isUser = $user->where(array('name'=>$name,'type'=>$type))->find();
+        if(!empty($isUser)){
+            $this->showSuccess(1002,'该用户已添加！');
+        }
+
         $data       = array(
             'name'        =>$name,
             'cancomming'  =>$cancomming,
@@ -86,12 +96,12 @@ class IndexController extends Controller {
             'createtime'  =>time(),
             'modifytime'  =>time()
         );
-        $user       = M('namelist');
+
         $res = $user->add($data);
         if($res)
-            $this->showSuccess(200,'添加成功');
+            $this->showSuccess(200,'添加成功！');
         else
-            $this->showSuccess(200,'添加失败');
+            $this->showSuccess(1002,'添加失败！');
     }
     public function editUser(){
         $id          = $_POST['id'];
@@ -108,13 +118,13 @@ class IndexController extends Controller {
         );
         $user       = M('namelist');
         $user->where("id={$id}")->save($data);
-        $this->showSuccess(200,'修改成功');
+        $this->showSuccess(200,'修改成功！');
     }
     public function delUser(){
         $id          = $_GET['id'];
         $user        = M('namelist');
         $user->where("id={$id}")->delete();
-        $this->showSuccess(200,'删除成功');
+        $this->showSuccess(200,'删除成功！');
     }
 
     function getUser(){

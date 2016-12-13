@@ -68,6 +68,13 @@ $("#sel_comming").change(function(){
     window.location.href = url;
 })
 
+$("#sel_iscomming").change(function(){
+    var iscomming = $(this).val();
+    var url        = $("#hide_url").val();
+    url = url+"/iscomming/"+iscomming;
+    window.location.href = url;
+})
+
 $("#sel_type").change(function(){
     var type = $(this).val();
     var url        = $("#hide_url").val();
@@ -132,6 +139,14 @@ $(".del_user").click(function(){
 
 })
 
+$(".edit_iscomming").click(function(){
+    var status = $(this).data('status');
+    var url  = $(this).data('url');
+    var id  = $(this).data('id');
+    $.post(url,{'iscomming':status,'id':id},function(data){
+        
+    })
+})
 $(function(){
     $(".comming").each(function(){
         var status = $(this).data('status');

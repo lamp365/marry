@@ -73,8 +73,8 @@
             </thead>
             <tbody>
             <?php if(is_array($info)): $i = 0; $__LIST__ = $info;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$row): $mod = ($i % 2 );++$i;?><tr class="one_row">
-                    <td><?php echo ($row['name']); ?></td>
-                    <td><?php echo ($row['mobile']); ?></td>
+                    <td class="name_sty"><?php echo ($row['name']); ?></td>
+                    <td class="mobile_sty"><?php echo ($row['mobile']); ?></td>
                     <td><?php echo ($tongxue_type[$row['type']]); ?></td>
                     <td class="comming" data-status="<?php echo ($row['cancomming']); ?>"><?php echo ($can_comming[$row['cancomming']]); ?></td>
                     <td>

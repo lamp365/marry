@@ -109,6 +109,15 @@ select option{
     font-size:16px;
     font-weight:bolder;
 }
+.name_sty{
+    font-size: 10px;
+}
+.mobile_sty{
+    font-size: 10px;
+}
+table tbody{
+    font-size: 10px;
+}
 
 #poptip {
     position: absolute;

@@ -98,7 +98,7 @@ class IndexController extends Controller {
             'type'        =>$type,
             'blong'       =>1,
             'createtime'  =>time(),
-            'modifytime'  =>time()
+            'modifiedtime'  =>time()
         );
 
         $res = $user->add($data);
@@ -118,7 +118,7 @@ class IndexController extends Controller {
             'cancomming'  =>$cancomming,
             'mobile'      =>$mobile,
             'type'        =>$type,
-            'modifytime'  =>time()
+            'modifiedtime'  =>time()
         );
         $user       = M('namelist');
         $user->where("id={$id}")->save($data);

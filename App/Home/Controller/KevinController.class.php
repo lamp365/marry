@@ -4,6 +4,12 @@ use Think\Controller;
 class KevinController extends Controller {
     public function index()
     {
+        $css = "style1.css";
+        if(is_mobile_request()){
+            $css = 'style.css';
+        }
+        $this->assign('css',$css);
+
         $condition = 'blong=2';
         if(!empty($_POST['name'])){
             $condition .= " and name='{$_POST['name']}'";
@@ -30,6 +36,12 @@ class KevinController extends Controller {
 
     public function qiandao()
     {
+        $css = "style1.css";
+        if(is_mobile_request()){
+            $css = 'style.css';
+        }
+        $this->assign('css',$css);
+
         $start_time = strtotime("2017-1-14 12:00:00");
         if(time()<$start_time){
             $begin  = 'no';

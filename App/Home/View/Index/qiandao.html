@@ -15,7 +15,7 @@
 <div class="main_box">
     <div class="top_header">
         <div class="header_title" style="">
-            <a href="__CONTROLLER__/index"  >宾客邀9请</a>
+            <a href="__CONTROLLER__/index"  >宾客邀请</a>
             <a href="__CONTROLLER__/qiandao" class='art_active'>宾客签到</a>
             <div class="head_right">
                 <span class="btn btn-xs btn-warning" id="refresh">刷新页面</span>
@@ -24,7 +24,26 @@
         </div>
     </div>
     <if condition="$begin eq 'no'">
-        <p class="show_time">shijianhaimeidao</p>
+        <p class="hun_tip">距离婚庆当天</p>
+        <div class="show_time" id="show_time">
+            <!--左侧的线条-->
+            <span style="height: 2px;width: 10%;background:rgb(238,238,238);display: inline-block;"></span>
+            <span style="width: 75%;background:rgb(238,238,238);display: inline-block;border-radius: 5px;color:#666666;line-height: 40px;padding: 5px 10px;">
+                剩余&nbsp;&nbsp;
+                <span class="limit_d offered">00</span>
+                &nbsp;天&nbsp;
+                <span class="limit_h offered">00</span>
+                &nbsp;:
+                <span class="limit_m offered">00</span>
+                &nbsp;
+                <span class="limit_s offered">00</span>
+                &nbsp;
+                开始
+            </span>
+            <!--右侧的线条-->
+            <span style="height: 2px;width:10%;background:rgb(238,238,238);display: inline-block;"></span>
+
+        </div>
     <else/>
         <div class="container action">
             <input type="hidden" value="__CONTROLLER__/qiandao" name="hide_url" id="hide_url">
@@ -90,16 +109,67 @@
                         <td>{$tongxue_type[$row['type']]}</td>
                         <td class="comming" data-status="{$row['cancomming']}">{$can_comming[$row['cancomming']]}</td>
                         <td class="iscomming">
-                            <span class="edit_iscomming btn btn-xs" data-status="{$row['cancomming']}" data-id="{$row['id']}" data-url="__CONTROLLER__/iscomming">{$is_comming[$row['iscomming']]}</span>
+                            <span class="edit_iscomming btn btn-xs" data-status="{$row['iscomming']}" data-id="{$row['id']}" data-url="__CONTROLLER__/iscomming">{$is_comming[$row['iscomming']]}</span>
                         </td>
                     </tr>
                 </volist>
                 </tbody>
             </table>
+            <p class="total">共：<span>{$total_num}</span> 位宾客</p>
         </div>
     </if>
 </div>
 
+<div class="foot_fix_top">
+    <img src="__IMG__/scroll-to-top.png" width="37" height="37">
+</div>
+
+<div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="__CONTROLLER__/addUser" id="add_user_form" data-reurl="__CONTROLLER__/index">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">添加宾客</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="name" id="name_put" placeholder="请输入名字">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="mobile" id="mobile_put" placeholder="请输入电话">
+                    </div>
+                    <div class="row" style="margin-bottom: 15px;overflow: hidden">
+                        <div class="col-xs-6">
+                            <select name="type" id="type_put" class="form-control">
+                                <option value="-1">选择关系</option>
+                                <volist name="tongxue_type" id="item">
+                                    <option value="{$key}">{$item}</option>
+                                </volist>
+                            </select>
+                        </div>
+                        <div class="col-xs-6">
+                            <select name="cancomming" id="comming_put" class="form-control">
+                                <option value="-1">选择状态</option>
+                                <volist name="can_comming" id="item">
+                                    <option value="{$key}">{$item}</option>
+                                </volist>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary sure_add">确认添加</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal -->
+</div>
+
 <script src="__JS__/style.js"></script>
+<if condition="$begin eq 'no'">
+    <script>countDown({$start_time},"#show_time")</script>
+</if>
 </body>
 </html>

@@ -27,7 +27,7 @@
     <div class="container action">
         <input type="hidden" value="/marry/index.php/Home/Index/index" name="hide_url" id="hide_url">
         <div class="form-group">
-            <form action="/marry/index.php/Home/Index" method="post">
+            <form action="/marry/index.php/Home/Index/index" method="post">
             <div class="input-group">
                 <input type="text" class="form-control search_name" name="name" placeholder="输入名字查询">
                 <span class="input-group-btn">
@@ -84,8 +84,14 @@
                 </tr><?php endforeach; endif; else: echo "" ;endif; ?>
             </tbody>
         </table>
+        <p class="total">共：<span><?php echo ($total_num); ?></span> 位宾客</p>
     </div>
 </div>
+
+<div class="foot_fix_top" >
+    <img src="/marry/Public/Home/images/scroll-to-top.png" width="37" height="37">
+</div>
+
 
 <div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">

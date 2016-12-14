@@ -140,13 +140,61 @@ $(".del_user").click(function(){
 })
 
 $(".edit_iscomming").click(function(){
+    var obj = this;
     var status = $(this).data('status');
+    if(status == 0){
+        status = 1;
+    }else{
+        status = 0;
+    }
     var url  = $(this).data('url');
     var id  = $(this).data('id');
     $.post(url,{'iscomming':status,'id':id},function(data){
-        
-    })
+        tip(data.msg,'success',1000);
+        if(status == 1){
+            $(obj).data('status',1);
+            $(obj).removeClass('btn-danger');
+            $(obj).addClass('btn-warning');
+            $(obj).html('已签到');
+        }else{
+            $(obj).data('status',0);
+            $(obj).removeClass('btn-warning');
+            $(obj).addClass('btn-danger');
+            $(obj).html('未签到');
+        }
+    },'json')
 })
+
+function countDown(time,id){
+    var end_time = time * 1000,//月份是实际月份-1
+        sys_second = (end_time-new Date().getTime())/1000;
+    console.log(end_time);
+    getTime(sys_second,id);
+    var timer = setInterval(function(){
+        if (sys_second > 1) {
+            sys_second -= 1;
+            getTime(sys_second,id);
+        } else {
+            clearInterval(timer);
+        }
+    }, 1000);
+}
+function getTime(sys_second,id){
+    var day = Math.floor((sys_second / 3600) / 24);
+    var hour = Math.floor((sys_second / 3600) % 24);
+    var minute = Math.floor((sys_second / 60) % 60);
+    var second = Math.floor(sys_second % 60);
+    if($(id+' .limit_d')){
+        $(id+' .limit_d').text(day<10?"0"+day:day);
+    }
+    if( second <=0 && minute<=0 ){
+        $(id).html("结束");
+    }
+    $(id+' .limit_h').text(hour<10?"0"+hour:hour);    //计算小时
+    $(id+' .limit_m').text(minute<10?"0"+minute:minute); //计算分钟
+    $(id+' .limit_s').text(second<10?"0"+second:second); //计算秒
+}
+
 $(function(){
     $(".comming").each(function(){
         var status = $(this).data('status');
@@ -160,4 +208,28 @@ $(function(){
             $(this).addClass('come2');
         }
     })
+
+    $(".edit_iscomming").each(function(){
+        var status = $(this).data('status');
+        if(status == 0){
+            //未签到
+            $(this).addClass('btn-danger');
+        }else if(status ==1){
+            //已签到
+            $(this).addClass('btn-warning');
+        }
+    })
+
+    $(window).scroll(function(){    //这个是滚动的
+        var distanceTop = 600;
+
+        if  ($(window).scrollTop() > distanceTop)
+            $(".foot_fix_top").show();
+        else
+            $(".foot_fix_top").hide();
+    });
+    $(".foot_fix_top").click(function(){
+        $("html,body").animate({scrollTop: 0},"slow");
+    })
+
 })

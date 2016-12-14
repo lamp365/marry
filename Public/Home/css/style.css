@@ -74,8 +74,41 @@ select option{
 .come2{
     color: red;
 }
-
-
+.total{
+    padding:0 10px;
+}
+.total span{
+    font-weight:bolder;
+}
+.foot_fix_top {
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    width: 35px;
+    height: 35px;
+    z-index: 20;
+    display: none;
+}
+.offered {
+    border-radius: 4px;
+    background: #404040;
+    color: #fff;
+    padding: 3px;
+}
+.show_time{
+    margin-top: 30px;
+    max-width: 900px;
+    margin-bottom: 20px;
+    padding: 0 15px;
+}
+.hun_tip{
+    margin-top:20px;
+    text-align: center;
+    height: 30px;
+    line-height:30px;
+    font-size:16px;
+    font-weight:bolder;
+}
 
 #poptip {
     position: absolute;

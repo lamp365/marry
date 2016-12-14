@@ -17,18 +17,20 @@ class IndexController extends Controller {
 
         $user = M('namelist');
         $info = $user->where($condition)->select();
+        $total_num = count($info);
 
         $tongxue_type = C('tongxue_type');
         $can_comming  = C('can_comming');
         $this->assign('info',$info);
         $this->assign('tongxue_type',$tongxue_type);
         $this->assign('can_comming',$can_comming);
+        $this->assign('total_num',$total_num);
         $this->display();
     }
 
     public function qiandao()
     {
-        $start_time = strtotime("2016-1-14 12:00:00");
+        $start_time = strtotime("2017-1-14 12:00:00");
         if(time()<$start_time){
             $begin  = 'no';
         }else{
@@ -45,6 +47,7 @@ class IndexController extends Controller {
             }
             $user = M('namelist');
             $info = $user->where($condition)->select();
+            $total_num = count($info);
 
             $tongxue_type = C('tongxue_type');
             $is_comming  = C('is_comming');
@@ -53,6 +56,7 @@ class IndexController extends Controller {
             $this->assign('tongxue_type',$tongxue_type);
             $this->assign('is_comming',$is_comming);
             $this->assign('can_comming',$can_comming);
+            $this->assign('total_num',$total_num);
         }
         $this->assign('begin',$begin);
         $this->assign('start_time',$start_time);
@@ -63,7 +67,7 @@ class IndexController extends Controller {
         $id         = $_POST['id'];
         $iscomming  = $_POST['iscomming'];
         $user       = M('namelist');
-        $user->where("id=$id")->save(array('iscomming'=>$iscomming));
+        $user->where("id={$id}")->save(array('iscomming'=>$iscomming));
         $this->showSuccess(200,'操作成功！');
     }
 

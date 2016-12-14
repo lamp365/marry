@@ -19,8 +19,8 @@
             <a href="/marry/index.php/Home/Index/index"  class='art_active'>宾客邀请</a>
             <a href="/marry/index.php/Home/Index/qiandao" >宾客签到</a>
             <div class="head_right">
-                <span class="btn btn-xs btn-warning" id="refresh">刷新页面</span>
-                <span class="btn btn-xs btn-info" data-toggle="modal" data-target="#addUser">添加宾客</span>
+                <span class="btn btn-xs btn-warning" id="refresh">刷&nbsp;新</span>
+                <span class="btn btn-xs btn-info" data-toggle="modal" data-target="#addUser">添&nbsp;加</span>
             </div>
         </div>
     </div>

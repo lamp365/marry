@@ -118,6 +118,9 @@ select option{
     width: 50px;
     white-space: '';
 }
+.mobile_sty a{
+    color: #5BC0DE;
+}
 table tbody{
     font-size: 10px;
 }

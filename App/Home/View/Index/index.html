@@ -84,7 +84,7 @@
             <volist name="info" id="row">
                 <tr class="one_row">
                     <td class="name_sty">{$row['name']}</td>
-                    <td class="mobile_sty">{$row['mobile']}</td>
+                    <td class="mobile_sty"><a href="tel:{$row['mobile']}">{$row['mobile']}</a></td>
                     <td>{$tongxue_type[$row['type']]}</td>
                     <td class="comming" data-status="{$row['cancomming']}">{$can_comming[$row['cancomming']]}</td>
                     <td>

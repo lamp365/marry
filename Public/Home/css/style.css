@@ -114,6 +114,9 @@ select option{
 }
 .mobile_sty{
     font-size: 10px;
+    word-wrap: break-word;
+    width: 50px;
+    white-space: '';
 }
 table tbody{
     font-size: 10px;

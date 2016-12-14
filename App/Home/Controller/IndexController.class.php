@@ -86,7 +86,7 @@ class IndexController extends Controller {
         $type        = $_POST['type'];
         $mobile      = $_POST['mobile'];
         //is exist this user
-        $isUser = $user->where(array('name'=>$name,'type'=>$type))->find();
+        $isUser = $user->where(array('name'=>$name,'type'=>$type,'blong'=>1))->find();
         if(!empty($isUser)){
             $this->showSuccess(1002,'该用户已添加！');
         }

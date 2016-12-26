@@ -74,21 +74,27 @@
             <thead>
             <tr>
                 <th>名字</th>
-                <th>电话</th>
-                <th>关系</th>
                 <th>状态</th>
+                <th>住宿</th>
                 <th>操作</th>
             </tr>
             </thead>
             <tbody>
             <volist name="info" id="row">
                 <tr class="one_row">
-                    <td class="name_sty">{$row['name']}</td>
-                    <td class="mobile_sty"><a href="tel:{$row['mobile']}">{$row['mobile']}</a></td>
-                    <td>{$tongxue_type[$row['type']]}</td>
-                    <td class="comming" data-status="{$row['cancomming']}">{$can_comming[$row['cancomming']]}</td>
+                    <td class="name_sty">{$row['name']}<br/><a href="tel:{$row['mobile']}" class="mobile_sty">{$row['mobile']}</a></td>
+                    <!--<td>{$tongxue_type[$row['type']]}</td>-->
+                    <td class="comming" data-status="{$row['cancomming']}" style="padding-top: 20px;"><span class="show_comming">{$can_comming[$row['cancomming']]}</span></td>
+                    <td class="need_hotal" style="padding-top: 18px;">
+                        <if condition="$row['is_hotal'] == 1">
+                            <span class="btn btn-xs btn-default show_hotal" data-id="{$row['id']}" data-hotal="{$row['is_hotal']}" data-url="__CONTROLLER__/hotal">无需住宿</span>
+                        <else/>
+                            <span class="btn btn-xs btn-info show_hotal" data-id="{$row['id']}"  data-hotal="{$row['is_hotal']}" data-url="__CONTROLLER__/hotal">需要住宿</span>
+                        </if>
+
+                    </td>
                     <td>
-                        <span class="btn btn-xs btn-info edit_user" data-id="{$row['id']}" data-url="__CONTROLLER__/getUser">修&nbsp;&nbsp;改</span>
+                        <span class="btn btn-xs btn-info edit_user" data-id="{$row['id']}" data-url="__CONTROLLER__/getUser">修&nbsp;&nbsp;改</span><br/>
                         <span class="btn btn-xs btn-danger del_user" data-id="{$row['id']}" data-url="__CONTROLLER__/delUser">移&nbsp;&nbsp;除</span>
                     </td>
                 </tr>

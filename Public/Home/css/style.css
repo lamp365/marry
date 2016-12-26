@@ -4,6 +4,7 @@
 }
 a{color: #0f0f0f}
 a:visited{color: #0f0f0f}
+.user_list a{color: #33CCFF}
 .main_box{
     height: 100%;
     background: white;
@@ -117,6 +118,13 @@ select option{
     word-wrap: break-word;
     width: 50px;
     white-space: '';
+}
+.user_list table .one_row .show_hotal,.user_list table .one_row .show_comming{
+    marging-top: 18px;
+
+}
+table td{
+    text-align: center;
 }
 .mobile_sty a{
     color: #5BC0DE;

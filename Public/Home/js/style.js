@@ -233,3 +233,27 @@ $(function(){
     })
 
 })
+
+$(".need_hotal span").click(function(){
+    var id     = $(this).data('id');
+    var hotal = $(this).data('hotal');
+    var url    = $(this).data('url');
+    var obj    = this;
+    if(hotal == 1){
+        $.post(url,{'id':id,'hotal':2},function(data){
+            tip(data.msg,'success',1000);
+            $(obj).data('hotal',2);
+            $(obj).removeClass('btn-default');
+            $(obj).addClass('btn-info');
+            $(obj).html('需要住宿');
+        },'json')
+    }else{
+        $.post(url,{'id':id,'hotal':1},function(data){
+            tip(data.msg,'success',1000);
+            $(obj).data('hotal',1);
+            $(obj).removeClass('btn-info');
+            $(obj).addClass('btn-default');
+            $(obj).html('无需住宿');
+        },'json')
+    }
+})

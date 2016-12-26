@@ -20,7 +20,9 @@ class IndexController extends Controller {
         if($_GET['cancomming'] != '' && $_GET['cancomming'] != -1){
             $condition .= " and cancomming={$_GET['cancomming']}";
         }
-
+        if($_GET['hotal'] != '' && $_GET['hotal'] != '-1'){
+            $condition .= " and is_hotal={$_GET['hotal']}";
+        }
         $user = M('namelist');
         $info = $user->where($condition)->select();
         $total_num = count($info);

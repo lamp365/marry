@@ -20,7 +20,9 @@ class KevinController extends Controller {
         if($_GET['cancomming'] != '' && $_GET['cancomming'] != -1){
             $condition .= " and cancomming={$_GET['cancomming']}";
         }
-
+        if($_GET['hotal'] != '' && $_GET['hotal'] != '-1'){
+            $condition .= " and is_hotal={$_GET['hotal']}";
+        }
         $user = M('namelist');
         $info = $user->where($condition)->select();
         $total_num = count($info);
@@ -195,7 +197,13 @@ class KevinController extends Controller {
 
         $this->showSuccess(200,$html);
     }
-
+    public function hotal(){
+        $id     = $_POST['id'];
+        $hotal  = $_POST['hotal'];
+        $user   = M('namelist');
+        $user->where("id={$id}")->save(array('is_hotal'=>$hotal));
+        $this->showSuccess('200','操作成功！');
+    }
     public function showSuccess($code,$msg){
         die(json_encode(array(
             'code'=>$code,

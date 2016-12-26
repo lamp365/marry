@@ -25,17 +25,34 @@
         </div>
     </div>
     <div class="container action">
-        <input type="hidden" value="__CONTROLLER__/index" name="hide_url" id="hide_url">
-        <div class="form-group">
-            <form action="__CONTROLLER__/index" method="post">
-            <div class="input-group">
-                <input type="text" class="form-control search_name" name="name" placeholder="输入名字查询">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="submit" id="search">搜索</button>
-                </span>
-            </div><!-- /input-group -->
-            </form>
+        <div class="row">
+            <div class="col-xs-8">
+                <input type="hidden" value="__CONTROLLER__/index" name="hide_url" id="hide_url">
+                <div class="form-group">
+                    <form action="__CONTROLLER__/index" method="post">
+                        <div class="input-group">
+                            <input type="text" class="form-control search_name" name="name" placeholder="输入名字查询">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="submit" id="search">搜索</button>
+                            </span>
+                        </div><!-- /input-group -->
+                    </form>
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <div class="form-group">
+                    <select name="sel_hotal" id="sel_hotal" class="form-control">
+                        <option value="-1">按照住宿查看</option>
+
+                            <option value="1" <if condition="$_GET['hotal'] eq 1"> selected </if>  >无需住宿</option>
+
+                            <option value="2" <if condition="$_GET['hotal'] eq 2"> selected </if> >需要住宿</option>
+
+                    </select>
+                </div>
+            </div>
         </div>
+
         <div class="row">
             <div class="col-xs-6">
                 <div class="form-group">

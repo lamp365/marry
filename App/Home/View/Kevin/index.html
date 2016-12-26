@@ -25,17 +25,34 @@
         </div>
     </div>
     <div class="container action">
-        <input type="hidden" value="__CONTROLLER__/index" name="hide_url" id="hide_url">
-        <div class="form-group">
-            <form action="__CONTROLLER__/index" method="post">
-            <div class="input-group">
-                <input type="text" class="form-control search_name" name="name" placeholder="输入名字查询">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="submit" id="search">搜索</button>
-                </span>
-            </div><!-- /input-group -->
-            </form>
+        <div class="row">
+            <div class="col-xs-8">
+                <input type="hidden" value="__CONTROLLER__/index" name="hide_url" id="hide_url">
+                <div class="form-group">
+                    <form action="__CONTROLLER__/index" method="post">
+                        <div class="input-group">
+                            <input type="text" class="form-control search_name" name="name" placeholder="输入名字查询">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="submit" id="search">搜索</button>
+                            </span>
+                        </div><!-- /input-group -->
+                    </form>
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <div class="form-group">
+                    <select name="sel_hotal" id="sel_hotal" class="form-control">
+                        <option value="-1">按照住宿查看</option>
+
+                        <option value="1" <if condition="$_GET['hotal'] eq 1"> selected </if>  >无需住宿</option>
+
+                        <option value="2" <if condition="$_GET['hotal'] eq 2"> selected </if> >需要住宿</option>
+
+                    </select>
+                </div>
+            </div>
         </div>
+
         <div class="row">
             <div class="col-xs-6">
                 <div class="form-group">
@@ -44,7 +61,7 @@
                         <volist name="can_comming" id="item">
                             <if condition="($_GET['cancomming'] neq '') and ($key eq $_GET['cancomming'])">
                                 <option value="{$key}" selected>{$item}</option>
-                            <else />
+                                <else />
                                 <option value="{$key}">{$item}</option>
                             </if>
 
@@ -74,21 +91,27 @@
             <thead>
             <tr>
                 <th>名字</th>
-                <th>电话</th>
-                <th>关系</th>
                 <th>状态</th>
+                <th>住宿</th>
                 <th>操作</th>
             </tr>
             </thead>
             <tbody>
             <volist name="info" id="row">
                 <tr class="one_row">
-                    <td class="name_sty">{$row['name']}</td>
-                    <td class="mobile_sty"><a href="tel:{$row['mobile']}">{$row['mobile']}</a></td>
-                    <td>{$tongxue_type[$row['type']]}</td>
-                    <td class="comming" data-status="{$row['cancomming']}">{$can_comming[$row['cancomming']]}</td>
+                    <td class="name_sty">{$row['name']}<br/><a href="tel:{$row['mobile']}" class="mobile_sty">{$row['mobile']}</a></td>
+                    <!--<td>{$tongxue_type[$row['type']]}</td>-->
+                    <td class="comming" data-status="{$row['cancomming']}" style="padding-top: 20px;"><span class="show_comming">{$can_comming[$row['cancomming']]}</span></td>
+                    <td class="need_hotal" style="padding-top: 18px;">
+                        <if condition="$row['is_hotal'] == 1">
+                            <span class="btn btn-xs btn-default show_hotal" data-id="{$row['id']}" data-hotal="{$row['is_hotal']}" data-url="__CONTROLLER__/hotal">无需住宿</span>
+                            <else/>
+                            <span class="btn btn-xs btn-info show_hotal" data-id="{$row['id']}"  data-hotal="{$row['is_hotal']}" data-url="__CONTROLLER__/hotal">需要住宿</span>
+                        </if>
+
+                    </td>
                     <td>
-                        <span class="btn btn-xs btn-info edit_user" data-id="{$row['id']}" data-url="__CONTROLLER__/getUser">修&nbsp;&nbsp;改</span>
+                        <span class="btn btn-xs btn-info edit_user" data-id="{$row['id']}" data-url="__CONTROLLER__/getUser">修&nbsp;&nbsp;改</span><br/>
                         <span class="btn btn-xs btn-danger del_user" data-id="{$row['id']}" data-url="__CONTROLLER__/delUser">移&nbsp;&nbsp;除</span>
                     </td>
                 </tr>
@@ -128,14 +151,14 @@
                                 </volist>
                             </select>
                         </div>
-                       <div class="col-xs-6">
-                           <select name="cancomming" id="comming_put" class="form-control">
-                               <option value="-1">选择状态</option>
-                               <volist name="can_comming" id="item">
-                                   <option value="{$key}">{$item}</option>
-                               </volist>
-                           </select>
-                       </div>
+                        <div class="col-xs-6">
+                            <select name="cancomming" id="comming_put" class="form-control">
+                                <option value="-1">选择状态</option>
+                                <volist name="can_comming" id="item">
+                                    <option value="{$key}">{$item}</option>
+                                </volist>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -150,22 +173,22 @@
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="editUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <form action="__CONTROLLER__/editUser" id="edit_user_form" data-reurl="__CONTROLLER__/index">
-    <input type="hidden" name="id" value="" id="hide_edit_user_id">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">编辑宾客</h4>
-            </div>
-            <div class="modal-body">
+        <input type="hidden" name="id" value="" id="hide_edit_user_id">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">编辑宾客</h4>
+                </div>
+                <div class="modal-body">
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary sure_edit_user">确定修改</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary sure_edit_user">确定修改</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
     </form>
 </div>
 

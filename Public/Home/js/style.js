@@ -81,7 +81,12 @@ $("#sel_type").change(function(){
     url = url+"/type/"+type;
     window.location.href = url;
 })
-
+$("#sel_hotal").change(function(){
+    var hotal = $(this).val();
+    var url        = $("#hide_url").val();
+    url = url+"/hotal/"+hotal;
+    window.location.href = url;
+})
 $(".edit_user").click(function(){
     var id = $(this).data('id');
     $("#hide_edit_user_id").val(id);

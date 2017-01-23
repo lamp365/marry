@@ -204,6 +204,14 @@ class KevinController extends Controller {
         $user->where("id={$id}")->save(array('is_hotal'=>$hotal));
         $this->showSuccess('200','操作成功！');
     }
+    public function hongbao(){
+        $id      = $_POST['id'];
+        $hongbao = $_POST['hongbao'];
+        $user    = M('namelist');
+        $user->where("id={$id}")->save(array('hongbao'=>$hongbao));
+        $this->showSuccess('200','操作成功！');
+    }
+
     public function showSuccess($code,$msg){
         die(json_encode(array(
             'code'=>$code,

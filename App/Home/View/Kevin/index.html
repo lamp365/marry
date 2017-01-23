@@ -92,7 +92,7 @@
             <tr>
                 <th>名字</th>
                 <th>状态</th>
-                <th>住宿</th>
+                <th>红包</th>
                 <th>操作</th>
             </tr>
             </thead>
@@ -103,11 +103,12 @@
                     <!--<td>{$tongxue_type[$row['type']]}</td>-->
                     <td class="comming" data-status="{$row['cancomming']}" style="padding-top: 20px;"><span class="show_comming">{$can_comming[$row['cancomming']]}</span></td>
                     <td class="need_hotal" style="padding-top: 18px;">
-                        <if condition="$row['is_hotal'] == 1">
-                            <span class="btn btn-xs btn-default show_hotal" data-id="{$row['id']}" data-hotal="{$row['is_hotal']}" data-url="__CONTROLLER__/hotal">无需住宿</span>
-                            <else/>
-                            <span class="btn btn-xs btn-info show_hotal" data-id="{$row['id']}"  data-hotal="{$row['is_hotal']}" data-url="__CONTROLLER__/hotal">需要住宿</span>
-                        </if>
+                        <!-- <if condition="$row['is_hotal'] == 1">
+                             <span class="btn btn-xs btn-default show_hotal" data-id="{$row['id']}" data-hotal="{$row['is_hotal']}" data-url="__CONTROLLER__/hotal">无需住宿</span>
+                         <else/>
+                             <span class="btn btn-xs btn-info show_hotal" data-id="{$row['id']}"  data-hotal="{$row['is_hotal']}" data-url="__CONTROLLER__/hotal">需要住宿</span>
+                         </if>-->
+                        <input type="text" class="hongbao" value="{$row['hongbao']}" data-id="{$row['id']}" data-url="__CONTROLLER__/hongbao">
 
                     </td>
                     <td>

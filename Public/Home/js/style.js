@@ -241,7 +241,7 @@ $(function(){
 
 $(".need_hotal span").click(function(){
     var id     = $(this).data('id');
-    var hotal = $(this).data('hotal');
+    var hotal  = $(this).data('hotal');
     var url    = $(this).data('url');
     var obj    = this;
     if(hotal == 1){
@@ -261,4 +261,13 @@ $(".need_hotal span").click(function(){
             $(obj).html('无需住宿');
         },'json')
     }
+})
+
+$(".hongbao").blur(function(){
+    var id      = $(this).data('id');
+    var hongbao = $(this).val();
+    var url     = $(this).data('url');
+    $.post(url,{'id':id,'hongbao':hongbao},function(data){
+        tip(data.msg,'success',500);
+    },'json')
 })
